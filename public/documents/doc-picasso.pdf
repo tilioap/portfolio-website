@@ -1,0 +1,404 @@
+Création d'un VPC et configuration du 
+serveur web 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Création d'un VPC 
+Dans la barre de recherche de AWS 
+taper « VPC » vous arriverez sur cette 
+pages (ci-contre) 
+ 
+Créer un VPC en appuyant sur « créer 
+VPC » Ensuite choisissez le nom de 
+votre VPC (exemple : « picasso-expo ») 
+et le Nombre de sous-réseaux public à 
+« 1 », fait ensuite créer en bas. Vous 
+devrez voir ceci : 
+Voici votre VPC : 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Création des sous-réseaux 
+supplémentaires 
+ 
+Accéder à l'onglet « sous-réseaux » à 
+gauche de l'écran, ensuite faite créer 
+et mettez les informations comme ci-
+contre : 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Et faite la même chose pour le deuxième. Avec ces informations : 
+Nom du sous-réseau Picasso-expo-subnet-private2 
+Ipv4 subnet CIDR block 10.0.3.0/24 
+ 
+Vous avez normalement les 2 nouveau sous-réseaux qui sont apparue. 
+ 
+ 
+ 
+ 
+
+Faites pareil pour « private1 » (ip = 10.0.1.0/24) et « public1 » (ip = 10.0.2.0/24) 
+ 
+ 
+ 
+Création du groupe de sécurité pour le VPC 
+Créer un groupe de sécurité en appuyant sur le bouton « Créer un groupe de sécurité », ensuite 
+rentré les informations comme ci-dessous. Ceci permettra la connexion au site web en http. 
+Créer aussi une règle qui permettra à accéder au serveur en SSH pour la connexion via PuTTY. 
+Mettez dans « Nom du groupe de sécurité » : Web Security Group 
+Et mettez ensuite les règles suivantes : 
+ 
+(Il faudra mettre les serveurs EC2 dans ce groupe de sécurité) 
+Vous devrez obtenir ceci : 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Création de l'instance pour le serveur web 
+Créer la première instance EC2 avec les 
+détails suivants. Pour tout le reste laisser par 
+default. 
+ 
+Après avoir réalisé cette étape vous pouvez 
+vous connecter en ssh avec PuTTY. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Pour ceci il faut récupérer la clé de sécurité ici : 
+ 
+Et l'ajouter dans PuTTY lors de la connexion comme ci-dessous :  
+ 
+ 
+Serveur Web Debian 
+Lancer la 
+commande 
+"sudo apt 
+update" 
+ 
+Ensuite 
+installer 
+apache avec 
+la commande 
+"sudo apt 
+install 
+apache2" 
+ 
+ 
+
+Vérifier 
+qu'apache 
+est bien 
+installer 
+Avec la 
+commande 
+"sudo 
+systemctl 
+status 
+apache2" 
+ 
+ 
+Exécuter la 
+commande 
+"sudo 
+systemctl 
+enable 
+apache2" 
+pour 
+qu'apache se 
+démarre 
+automatique
+ment au 
+démarrage 
+ 
+Vous pouvez 
+vérifier 
+qu'apache 
+fonctionne 
+bien en 
+tapant dans 
+l'url de votre 
+système 
+d'exploitatio
+n 
+http://"l'ip_d
+e_votre_inst
+ance" 
+ 
+ 
+
+Changer la 
+pages par 
+default de 
+Apache 
+Allez dans 
+votre serveur 
+cd 
+/var/www/ht
+ml 
+Enuiste allez 
+dans le ficher 
+index.html et 
+modifier le 
+avec votre 
+code html. 
+ 
+ 
+Serveur Data Debian (MariaDB) 
+ 
+Prérequis : Sachant que votre serveur de base data est dans un sous-réseau qui n'as pas accès à 
+internet vous devez vous connecter à partir de votre Serveur Web. 
+Etape 1: 
+Télécharger 
+la clé 
+labsuser.pe
+m depuis le 
+lien 
+https://labs.
+vocareum.co
+m/main/mai
+n.php 
+ 
+Transférer la 
+clé de votre 
+pc au 
+serveur Web 
+avec Filezilla 
+ 
+Rentrer les 
+mêmes 
+informations 
+en 
+changeant 
+l'@ de l'hôte 
+et ajouter 
+votre clé en 
+.ppk  
+ 
+
+Avant de 
+transferer la 
+clé créer un 
+dossier avec 
+les 
+informations 
+ci-contre 
+ 
+ 
+Mettre des 
+permissions 
+pour votre 
+dossier .pem 
+pour que 
+seul vous 
+puisse lire 
+ 
+
+Chercher 
+ensuite votre 
+fichier dans 
+la colonne 
+de gauche. 
+Et glisser 
+votre fichier 
+en .pem 
+dans le 
+dossier créer 
+juste avant. 
+ 
+Retourner 
+sur votre 
+serveur web 
+et connecter 
+vous au 
+serveur data 
+avec cette 
+commande 
+"ssh -i 
+/chemin/ver
+s/votre/clé_
+privée 
+utilisateur@
+adresse_ip_d
+u_serveur" 
+@ ip du 
+serveur et la 
+priver 
+ 
+ 
+Etape 2 
+Maintenant que vous avez accès à votre serveur data vous pouvez le mettre à jour et installer Maridb 
+pour sa vous devrez avoir accès à internet pour sa suivez les étapes suivantes : 
+Accéder à votre vpc 
+Allez dans vos "Sous-réseaux"  
+ 
+Faites clic droit sur les sous-
+réseaux "picasso-expo-subnet-
+private2" 
+Et aller sur "Modifier une 
+association des tables de 
+routage" 
+ 
+
+Changer votre "ID de la table de 
+routage" et y mettre comme sur 
+la photo ci-contre. 
+ 
+Vous pouvez maintenant 
+accéder à votre Serveur Data et 
+faire les mises à jours comme 
+pour l'autre serveur. 
+ 
+ 
+Installer aussi MariaDB juste 
+après les mises à jour. Pour ceci 
+taper la commande ci-contre 
+"sudo apt install mariadb-server" 
+Des que l'installation est finit 
+vérifier son statu avec la 
+commande 
+« sudo systemctl status 
+mariadb » 
+ 
+Configurer ensuite MariaDB 
+avec la commande : 
+sudo mysql_secure_installation 
+ 
+Entrez un mot de passe pour le 
+root de la base de données. 
+ 
+Et suivez ensuite les consignes. 
+ 
+Pour finir remettez la table de 
+routage comme elle était en 
+allant au même endroit 
+qu'avant. 
+ 
+ 
+
+Mise en place du Firewall (UFW) 
+UFW est un Firewall simplifier qu'on peut installer directement sur un serveur. 
+Pour l'installer il 
+faut exécuter la 
+commande 
+sudo apt install ufw 
+Mettez ensuite 
+les valeurs par-
+default à l'aide 
+des commandes 
+ci-contre 
+sudo ufw default deny incoming 
+ 
+sudo ufw default allow outgoing 
+On va autoriser 
+les connections 
+ssh pour 
+pouvoir se 
+connecter 
+quand on veut 
+au ssh sans être 
+bloquer. 
+sudo ufw allow ssh 
+ 
+& 
+ 
+sudo ufw allow 22 
+Activer 
+maintenant le 
+firewall 
+sudo ufw enable 
+Et vérifier les 
+connexions 
+autoriser avec la 
+commande  
+sudo ufw status verbose 
+ 
+ 
+Ajouter les 
+règles pour 
+laisser passer le 
+http et https 
+http: "sudo ufw allow http" 
+https: "sudo ufw allow https" 
+Port 80 pour le http : « sudo ufw allow 80 » 
+Et le port 443 pour le https : « sudo ufw allow 443 » 
+Et revérifier si 
+vous avez bien 
+le port 80 et 
+443 qui son 
+apparue avec la 
+commande : 
+sudo ufw status verbose 
+ 
+ 
+ 
+
+Faite la même chose sur le serveur Data, il faudra juste remettre la connexion a internet comme 
+expliquer précédemment. Il faudra juste mettre le ssh et non le reste (http et https). 
+ 
+ 
+Certificat auto-signé  
+Un certificat auto-signé est certificat numérique créé et signé par la même personne, au lieu que se 
+soit une CA (Autorité de Certification) tierces. Ceci est utiliser comme dans notre projet pour des 
+testes ou dans un environnement de développement avant la mise en production. 
+La problématique de cette solution est qu'il ne garantie pas la confiance car tout le monde peut créer 
+son propre certificat et n'as aucune sécurité externe.

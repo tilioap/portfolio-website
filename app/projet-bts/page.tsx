@@ -1,180 +1,515 @@
-import Image from "next/image"
-import { Code, Database, Layout } from "lucide-react"
+import { Code, Database, Server, Network, Shield, Download, Cloud } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Badge } from "@/components/ui/badge"
 
 export default function ProjetBTS() {
   return (
     <div className="container py-12 md:py-16 lg:py-24">
       <div className="mx-auto max-w-5xl space-y-12">
         <div className="space-y-4 text-center">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Projets BTS</h1>
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Projets École</h1>
           <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-            Découvrez les projets réalisés dans le cadre de mon BTS SIO option SLAM
+            Découvrez les projets réalisés dans le cadre de ma formation
           </p>
+          <div className="flex justify-center mt-4">
+            <a href="/documents/tableau-synthese.pdf" download>
+              <Button className="bg-emerald-600 hover:bg-emerald-700">
+                <Download className="mr-2 h-4 w-4" /> Télécharger le tableau de synthèse
+              </Button>
+            </a>
+          </div>
         </div>
 
         <Tabs defaultValue="projet1" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="projet1">Projet 1</TabsTrigger>
-            <TabsTrigger value="projet2">Projet 2</TabsTrigger>
-            <TabsTrigger value="projet3">Projet 3</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 text-xs sm:text-sm">
+            <TabsTrigger value="projet1">Zabbix</TabsTrigger>
+            <TabsTrigger value="projet2">Réseau</TabsTrigger>
+            <TabsTrigger value="projet3">Picasso</TabsTrigger>
           </TabsList>
+
           <TabsContent value="projet1" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Application de Gestion de Stock</CardTitle>
+                <CardTitle>Serveur de Supervision Zabbix</CardTitle>
                 <CardDescription>
-                  Développement d'une application web pour la gestion de stock d'une entreprise
+                  Mise en place d'un serveur de supervision pour surveiller l'infrastructure réseau
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="aspect-video overflow-hidden rounded-lg">
-                  <Image
-                    src="/placeholder.svg?height=720&width=1280"
-                    alt="Capture d'écran du projet"
-                    width={1280}
-                    height={720}
-                    className="object-cover"
-                  />
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Présentation du projet</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Dans le cadre d'un projet collaboratif entre les entreprises ByteMeUp, Pare-Fouine et Cloud
+                    Macronique pour répondre à un appel à projet d'une agence gouvernementale de cybersécurité, j'ai été
+                    chargé de mettre en place un serveur de supervision Zabbix. Ce projet s'inscrit dans une simulation
+                    de cyberattaque visant à tester la résilience et la sécurité des infrastructures mises en place par
+                    les trois entreprises.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    L'entreprise Cloud Macronique, spécialisée en réseau, a mis en place une infrastructure avec un wifi
+                    sécurisé, un outil de supervision du réseau, un cœur de réseau et une segmentation réseau. Le
+                    serveur Zabbix joue un rôle crucial dans la détection en temps réel des attaques et des anomalies
+                    sur le réseau, permettant une réaction rapide avant que les dégâts ne se propagent.
+                  </p>
                 </div>
+
                 <div className="grid gap-6 md:grid-cols-3">
                   <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
-                    <Layout className="h-8 w-8 text-emerald-600" />
-                    <h3 className="font-medium">Frontend</h3>
-                    <p className="text-sm text-muted-foreground">React, Bootstrap</p>
-                  </div>
-                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
-                    <Code className="h-8 w-8 text-emerald-600" />
-                    <h3 className="font-medium">Backend</h3>
-                    <p className="text-sm text-muted-foreground">Node.js, Express</p>
+                    <Server className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Serveur</h3>
+                    <p className="text-sm text-muted-foreground">Ubuntu Server 22.04 LTS</p>
                   </div>
                   <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
                     <Database className="h-8 w-8 text-emerald-600" />
                     <h3 className="font-medium">Base de données</h3>
-                    <p className="text-sm text-muted-foreground">MySQL</p>
+                    <p className="text-sm text-muted-foreground">MariaDB</p>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
+                    <Code className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Interface Web</h3>
+                    <p className="text-sm text-muted-foreground">Apache, PHP</p>
                   </div>
                 </div>
-                <div>
-                  <h3 className="font-medium">Description du projet</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Cette application permet de gérer les stocks d'une entreprise avec les fonctionnalités suivantes :
-                    ajout, modification et suppression de produits, gestion des catégories, suivi des entrées et
-                    sorties, génération de rapports et statistiques. L'interface utilisateur a été conçue pour être
-                    intuitive et responsive, permettant une utilisation sur différents appareils.
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Architecture Zabbix</h3>
+                  <p className="text-sm text-muted-foreground">
+                    L'architecture Zabbix est composée des éléments suivants :
                   </p>
-                </div>
-                <div>
-                  <h3 className="font-medium">Compétences développées</h3>
-                  <ul className="ml-6 mt-2 list-disc text-sm text-muted-foreground">
-                    <li>Conception d'une architecture MVC</li>
-                    <li>Développement d'API RESTful</li>
-                    <li>Gestion de l'authentification et des autorisations</li>
-                    <li>Conception et optimisation de base de données</li>
-                    <li>Tests unitaires et d'intégration</li>
+                  <ul className="list-disc pl-5 text-sm space-y-1 text-muted-foreground">
+                    <li>Serveur Zabbix : Collecte et analyse les données des hôtes.</li>
+                    <li>Base de données MySQL : Stocke les configurations et les données de supervision.</li>
+                    <li>
+                      Interface Web : Permet l'affichage des données collectées sous forme de graphiques, tableaux et
+                      alertes.
+                    </li>
+                    <li>
+                      Agents Zabbix : Installés sur les hôtes supervisés pour remonter des métriques (CPU, RAM, réseau,
+                      etc.).
+                    </li>
                   </ul>
                 </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Tableaux de bord</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Les tableaux de bord permettent d'afficher des graphiques, des statistiques et des alertes pour les
+                    équipements supervisés. Le tableau de bord principal affiche :
+                  </p>
+                  <ul className="list-disc pl-5 text-sm space-y-1 text-muted-foreground">
+                    <li>
+                      L'utilisation de la RAM, du CPU et des disques en temps réel pour les VM Linux et Windows et du
+                      serveur d'hyperviseur.
+                    </li>
+                    <li>Les informations du système où est installé Zabbix.</li>
+                    <li>La disponibilité des actifs réseau (les 2 switches et la borne Wifi) et des serveurs.</li>
+                    <li>Les alertes et problèmes, triés par date.</li>
+                    <li>Les ports des 2 switches avec indication de leur état (up/down).</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Découverte réseau automatisée</h3>
+                  <p className="text-sm text-muted-foreground">
+                    J'ai mis en place une automatisation de la découverte des PC Windows qui sont sur le DHCP. Cette
+                    fonctionnalité permet un gain de temps considérable dans la gestion du parc informatique.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Des règles ont été configurées pour accepter uniquement les PC dans la plage d'adresses
+                    172.16.20.100-200, vérifier leur hostname et les ajouter automatiquement à Zabbix. Des actions ont
+                    également été mises en place pour supprimer les hôtes inactifs après une période définie.
+                  </p>
+                </div>
               </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Voir la documentation complète</Button>
+              <CardFooter className="flex flex-col sm:flex-row gap-4">
+                <a href="/documents/doc-zabbix.pdf" download className="w-full sm:w-1/2">
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                    <Download className="mr-2 h-4 w-4" /> Documentation complète
+                  </Button>
+                </a>
+                <a href="/documents/cahier-charges-zabbix.pdf" download className="w-full sm:w-1/2">
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                    <Download className="mr-2 h-4 w-4" /> Cahier des charges
+                  </Button>
+                </a>
               </CardFooter>
             </Card>
           </TabsContent>
+
           <TabsContent value="projet2" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Site E-commerce</CardTitle>
-                <CardDescription>Création d'une boutique en ligne pour un commerce local</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="aspect-video overflow-hidden rounded-lg">
-                  <Image
-                    src="/placeholder.svg?height=720&width=1280"
-                    alt="Capture d'écran du projet"
-                    width={1280}
-                    height={720}
-                    className="object-cover"
-                  />
-                </div>
-                <div className="grid gap-6 md:grid-cols-3">
-                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
-                    <Layout className="h-8 w-8 text-emerald-600" />
-                    <h3 className="font-medium">Frontend</h3>
-                    <p className="text-sm text-muted-foreground">HTML, CSS, JavaScript</p>
-                  </div>
-                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
-                    <Code className="h-8 w-8 text-emerald-600" />
-                    <h3 className="font-medium">Backend</h3>
-                    <p className="text-sm text-muted-foreground">PHP, Laravel</p>
-                  </div>
-                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
-                    <Database className="h-8 w-8 text-emerald-600" />
-                    <h3 className="font-medium">Base de données</h3>
-                    <p className="text-sm text-muted-foreground">MySQL</p>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-medium">Description du projet</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Développement d'un site e-commerce complet avec catalogue de produits, panier d'achat, système de
-                    paiement sécurisé, gestion des commandes et espace client. Le site inclut également un back-office
-                    pour l'administration des produits, des commandes et des clients.
-                  </p>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Voir la documentation complète</Button>
-              </CardFooter>
-            </Card>
-          </TabsContent>
-          <TabsContent value="projet3" className="mt-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Application Mobile de Suivi Sportif</CardTitle>
+                <CardTitle>Cœur de Réseau</CardTitle>
                 <CardDescription>
-                  Développement d'une application mobile pour le suivi d'activités sportives
+                  Configuration des switches et du pare-feu Stormshield pour le cœur de réseau
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="aspect-video overflow-hidden rounded-lg">
-                  <Image
-                    src="/placeholder.svg?height=720&width=1280"
-                    alt="Capture d'écran du projet"
-                    width={1280}
-                    height={720}
-                    className="object-cover"
-                  />
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Description du projet</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Le cœur de réseau est un élément central de l'infrastructure Cloud Macronique, assurant la
+                    connectivité et la sécurité entre les différents segments du réseau. Dans le cadre du projet de
+                    simulation de cyberattaque, j'ai été chargé de configurer la segmentation réseau, les switches et le
+                    pare-feu Stormshield.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    La segmentation réseau a été mise en place avec deux VLAN distincts : un VLAN Administration pour
+                    les serveurs (AD, serveur de fichiers) et un VLAN Visiteur pour le wifi public, permettant ainsi de
+                    séparer les trafics et renforcer la sécurité du réseau. Deux switches ont été déployés et configurés
+                    pour gérer ces VLAN, assurant l'isolation des communications entre les deux segments tout en
+                    permettant une interconnexion pour la redondance.
+                  </p>
                 </div>
+
                 <div className="grid gap-6 md:grid-cols-3">
                   <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
-                    <Layout className="h-8 w-8 text-emerald-600" />
-                    <h3 className="font-medium">Frontend</h3>
-                    <p className="text-sm text-muted-foreground">React Native</p>
+                    <Network className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Switches</h3>
+                    <p className="text-sm text-muted-foreground">Configuration VLAN et trunks</p>
                   </div>
                   <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
-                    <Code className="h-8 w-8 text-emerald-600" />
-                    <h3 className="font-medium">Backend</h3>
-                    <p className="text-sm text-muted-foreground">Firebase</p>
+                    <Shield className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Pare-feu</h3>
+                    <p className="text-sm text-muted-foreground">Stormshield SN320</p>
                   </div>
                   <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
-                    <Database className="h-8 w-8 text-emerald-600" />
-                    <h3 className="font-medium">Base de données</h3>
-                    <p className="text-sm text-muted-foreground">Firestore</p>
+                    <Server className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Surveillance</h3>
+                    <p className="text-sm text-muted-foreground">SNMP, Zabbix</p>
                   </div>
                 </div>
-                <div>
-                  <h3 className="font-medium">Description du projet</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Application mobile permettant aux utilisateurs de suivre leurs activités sportives, d'enregistrer
-                    leurs performances, de définir des objectifs et de visualiser leur progression. L'application
-                    utilise le GPS pour suivre les parcours et calcule diverses statistiques comme la distance, la
-                    vitesse, les calories brûlées, etc.
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Configuration des VLAN</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Les VLAN permettent de segmenter logiquement le réseau pour améliorer la sécurité et l'efficacité.
+                    Les VLAN configurés sont les suivants :
+                  </p>
+                  <div className="grid gap-4 md:grid-cols-3">
+                    <div className="rounded-lg border p-4">
+                      <Badge className="bg-emerald-600 mb-2">VLAN 10</Badge>
+                      <h4 className="font-medium">Réseau Public</h4>
+                      <ul className="mt-2 text-sm space-y-1 text-muted-foreground">
+                        <li>Plage IP : 172.16.10.0/24</li>
+                        <li>Passerelle : 172.16.10.254</li>
+                      </ul>
+                    </div>
+                    <div className="rounded-lg border p-4">
+                      <Badge className="bg-emerald-600 mb-2">VLAN 20</Badge>
+                      <h4 className="font-medium">Réseau Privé</h4>
+                      <ul className="mt-2 text-sm space-y-1 text-muted-foreground">
+                        <li>Plage IP : 172.16.20.0/24</li>
+                        <li>Passerelle : 172.16.20.254</li>
+                      </ul>
+                    </div>
+                    <div className="rounded-lg border p-4">
+                      <Badge className="bg-emerald-600 mb-2">VLAN 30</Badge>
+                      <h4 className="font-medium">Réseau Admin</h4>
+                      <ul className="mt-2 text-sm space-y-1 text-muted-foreground">
+                        <li>Plage IP : 172.16.30.0/24</li>
+                        <li>Passerelle : 172.16.30.254</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Configuration des trunks</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Les trunks permettent le transport de plusieurs VLAN sur un même lien physique, assurant ainsi la
+                    communication entre les switches et autres équipements réseau.
+                  </p>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="rounded-lg border p-4">
+                      <h4 className="font-medium">Trunk - Group1</h4>
+                      <ul className="mt-2 text-sm space-y-1 text-muted-foreground">
+                        <li>ID : 01</li>
+                        <li>Type : LACP</li>
+                        <li>Ports : 27, 28</li>
+                        <li>Description : Lien entre les 2 switches</li>
+                      </ul>
+                    </div>
+                    <div className="rounded-lg border p-4">
+                      <h4 className="font-medium">Trunk - Group2</h4>
+                      <ul className="mt-2 text-sm space-y-1 text-muted-foreground">
+                        <li>ID : 02</li>
+                        <li>Type : LACP</li>
+                        <li>Ports : 3, 4, 5, 6</li>
+                        <li>Description : Lien avec le serveur</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Configuration du Stormshield</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Le Stormshield SN900 est utilisé comme pare-feu principal du cœur de réseau. Il permet de segmenter
+                    le trafic, d'appliquer des règles de filtrage et d'assurer la sécurité des communications entre les
+                    différents VLANs et sous-réseaux.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Le pare-feu est configuré pour filtrer les flux entrants et sortants grâce à des règles précises
+                    basées sur les adresses IP, les ports et les protocoles. Il intègre un système IDS/IPS qui analyse
+                    le trafic en temps réel, détecte les comportements suspects et bloque automatiquement les menaces
+                    potentielles.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    De plus, le Stormshield SN900 permet de sécuriser l'accès au réseau Wifi en mettant en place un
+                    portail captif. Ce portail redirige les utilisateurs vers une page d'authentification avant qu'ils
+                    ne puissent accéder à Internet. Les sessions utilisateurs sont enregistrées dans des logs pour un
+                    suivi précis des connexions.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Règles de filtrage</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Des règles de filtrage ont été configurées pour contrôler le trafic entre les différents VLANs :
+                  </p>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium">VLAN Public (VLAN 10)</h4>
+                      <div className="overflow-x-auto mt-2 max-w-[calc(100vw-3rem)] sm:max-w-full">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Source</TableHead>
+                              <TableHead>Destination</TableHead>
+                              <TableHead>Port dest</TableHead>
+                              <TableHead>Action</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            <TableRow>
+                              <TableCell>Network_Public</TableCell>
+                              <TableCell>Srv-Controleur</TableCell>
+                              <TableCell>8088</TableCell>
+                              <TableCell>Pass</TableCell>
+                            </TableRow>
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-medium">VLAN Private (VLAN 20)</h4>
+                      <div className="overflow-x-auto mt-2 max-w-[calc(100vw-3rem)] sm:max-w-full">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Source</TableHead>
+                              <TableHead>Destination</TableHead>
+                              <TableHead>Port dest</TableHead>
+                              <TableHead>Action</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            <TableRow>
+                              <TableCell>Srv-Contrôle</TableCell>
+                              <TableCell>AP-WIFI</TableCell>
+                              <TableCell>Any</TableCell>
+                              <TableCell>Pass</TableCell>
+                            </TableRow>
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-medium">VLAN Admin (VLAN 30)</h4>
+                      <div className="overflow-x-auto mt-2 max-w-[calc(100vw-3rem)] sm:max-w-full">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Source</TableHead>
+                              <TableHead>Destination</TableHead>
+                              <TableHead>Port dest</TableHead>
+                              <TableHead>Action</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            <TableRow>
+                              <TableCell>Network_Admin</TableCell>
+                              <TableCell className="break-words max-w-[120px]">
+                                Network_Private Network_Public
+                              </TableCell>
+                              <TableCell>Any</TableCell>
+                              <TableCell>Pass</TableCell>
+                            </TableRow>
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Surveillance des Switches</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Les switches sont surveillés via le protocole SNMP pour collecter des informations telles que les
+                    ports actifs, les erreurs, et l'utilisation des interfaces réseau.
+                  </p>
+                  <ul className="list-disc pl-5 text-sm space-y-1 text-muted-foreground">
+                    <li>Communauté SNMP : public</li>
+                    <li>Version SNMP : SNMPv2</li>
+                    <li>Intégration avec Zabbix pour une surveillance proactive</li>
+                  </ul>
+                </div>
+              </CardContent>
+              <CardFooter className="flex flex-col sm:flex-row gap-4">
+                <a href="/documents/doc-coeur-reseau.pdf" download className="w-full sm:w-1/2">
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                    <Download className="mr-2 h-4 w-4" /> Documentation complète
+                  </Button>
+                </a>
+                <a href="/documents/cahier-charges-reseau.pdf" download className="w-full sm:w-1/2">
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                    <Download className="mr-2 h-4 w-4" /> Cahier des charges
+                  </Button>
+                </a>
+              </CardFooter>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="projet3" className="mt-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Projet Picasso</CardTitle>
+                <CardDescription>
+                  Mise en place d'une infrastructure AWS pour héberger un site d'exposition temporaire
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Présentation du projet</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Le musée du film d'animation de la ville d'Annecy a organisé une exposition temporaire des œuvres de
+                    Pablo Picasso. Dans le cadre de ce projet, j'ai été chargé de mettre en place l'infrastructure
+                    d'hébergement du site web de l'exposition sur Amazon Web Services (AWS). Ce projet a été réalisé en
+                    tant qu'étudiant en option SISR, tandis que les étudiants en option SLAM se sont occupés du
+                    développement du site web.
+                  </p>
+                </div>
+
+                <div className="grid gap-6 md:grid-cols-3">
+                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
+                    <Cloud className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Infrastructure Cloud</h3>
+                    <p className="text-sm text-muted-foreground">Amazon Web Services (AWS)</p>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
+                    <Server className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Serveurs</h3>
+                    <p className="text-sm text-muted-foreground">Debian 12, Apache, MariaDB</p>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
+                    <Shield className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Sécurité</h3>
+                    <p className="text-sm text-muted-foreground">UFW, HTTPS, Certificats SSL</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Architecture réseau</h3>
+                  <p className="text-sm text-muted-foreground">
+                    L'architecture mise en place comprend deux serveurs Linux (Debian 12) :
+                  </p>
+                  <ul className="list-disc pl-5 text-sm space-y-1 text-muted-foreground">
+                    <li>Un serveur web situé dans un sous-réseau public accessible depuis Internet</li>
+                    <li>
+                      Un serveur de base de données situé dans un sous-réseau privé, non accessible directement depuis
+                      Internet
+                    </li>
+                  </ul>
+                  <p className="text-sm text-muted-foreground">
+                    Cette séparation permet d'améliorer la sécurité en isolant la base de données des accès directs
+                    depuis Internet.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Configuration du VPC</h3>
+                  <p className="text-sm text-muted-foreground">
+                    J'ai créé un Virtual Private Cloud (VPC) nommé "picasso-expo" avec les sous-réseaux suivants :
+                  </p>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="rounded-lg border p-4">
+                      <h4 className="font-medium">Sous-réseaux publics</h4>
+                      <ul className="mt-2 text-sm space-y-1 text-muted-foreground">
+                        <li>picasso-expo-subnet-public1 (10.0.2.0/24)</li>
+                      </ul>
+                    </div>
+                    <div className="rounded-lg border p-4">
+                      <h4 className="font-medium">Sous-réseaux privés</h4>
+                      <ul className="mt-2 text-sm space-y-1 text-muted-foreground">
+                        <li>picasso-expo-subnet-private1 (10.0.1.0/24)</li>
+                        <li>picasso-expo-subnet-private2 (10.0.3.0/24)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Serveur Web</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Le serveur web a été configuré avec les éléments suivants :
+                  </p>
+                  <ul className="list-disc pl-5 text-sm space-y-1 text-muted-foreground">
+                    <li>Système d'exploitation Debian 12</li>
+                    <li>Serveur web Apache2</li>
+                    <li>Configuration HTTPS avec certificat auto-signé</li>
+                    <li>Pare-feu UFW avec règles pour HTTP (80), HTTPS (443) et SSH (22)</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Serveur de base de données</h3>
+                  <p className="text-sm text-muted-foreground">Le serveur de base de données a été configuré avec :</p>
+                  <ul className="list-disc pl-5 text-sm space-y-1 text-muted-foreground">
+                    <li>Système d'exploitation Debian 12</li>
+                    <li>MariaDB Server pour la gestion des données</li>
+                    <li>Configuration sécurisée avec mysql_secure_installation</li>
+                    <li>
+                      Pare-feu UFW avec règles pour SSH (22) et MariaDB (3306) uniquement depuis le réseau interne
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Sécurité</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Plusieurs mesures de sécurité ont été mises en place :
+                  </p>
+                  <ul className="list-disc pl-5 text-sm space-y-1 text-muted-foreground">
+                    <li>Groupe de sécurité AWS "Web Security Group" pour contrôler les accès réseau</li>
+                    <li>Pare-feu UFW sur les deux serveurs avec des règles spécifiques</li>
+                    <li>Isolation de la base de données dans un sous-réseau privé</li>
+                    <li>Utilisation de certificats SSL pour le chiffrement des communications</li>
+                  </ul>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    <strong>Problématique du certificat auto-signé :</strong> Un certificat auto-signé ne garantit pas
+                    la confiance car il n'est pas validé par une autorité de certification tierce. Cela peut générer des
+                    avertissements de sécurité dans les navigateurs et ne convient que pour des environnements de test
+                    ou de développement.
                   </p>
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Voir la documentation complète</Button>
+              <CardFooter className="flex flex-col sm:flex-row gap-4">
+                <a href="/documents/doc-picasso.pdf" download className="w-full sm:w-1/2">
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                    <Download className="mr-2 h-4 w-4" /> Documentation technique
+                  </Button>
+                </a>
+                <a href="/documents/projet-picasso.pdf" download className="w-full sm:w-1/2">
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                    <Download className="mr-2 h-4 w-4" /> Cahier des charges
+                  </Button>
+                </a>
               </CardFooter>
             </Card>
           </TabsContent>
@@ -183,4 +518,3 @@ export default function ProjetBTS() {
     </div>
   )
 }
-

@@ -5,12 +5,13 @@ import "./globals.css"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import { NetworkBackground } from "@/components/network-background"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Portfolio - Tilio ALBRI-PICOT",
-  description: "Portfolio professionnel de Tilio ALBRI-PICOT, développeur informatique",
+  description: "Portfolio professionnel de Tilio ALBRI-PICOT, technicien en systèmes informatiques et réseaux",
     generator: 'v0.app'
 }
 
@@ -20,9 +21,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning className="dark">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+          forcedTheme="dark"
+        >
+          <NetworkBackground />
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
             <main className="flex-1">{children}</main>
@@ -33,4 +41,3 @@ export default function RootLayout({
     </html>
   )
 }
-

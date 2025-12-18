@@ -1,0 +1,158 @@
+AP 1A - Projet : exposition Picasso 
+ 
+Contenu 
+1. Contexte .................................................................................................................... 2 
+2. Exigences concernant le site (option SLAM) ................................................................ 2 
+3. Exigences concernant l'hébergement (option SISR) ..................................................... 4 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
+1. Contexte 
+ 
+Le musée du film d'animation de la ville d'Annecy, grâce à un accord exceptionnel avec de 
+grands musées du monde entier, a réussi à réunir 9 œuvres majeures de Pablo Picasso 
+(images fournies dans Classroom), artiste ayant inspiré nombre de réalisateurs de films 
+d'animation. 
+Ces œuvres seront exposées du 10 au 22 mai 2024 dans la salle d'exposition temporaire du 
+musée. 
+La direction du musée fait appel aux BTS SIO du lycée Saint Michel pour mettre en œuvre le 
+site web de l'exposition temporaire et pour l'hébergement. 
+ 
+Afin d'utiliser au mieux les compétences en fonction de votre option, les étudiants en option 
+SLAM seront chargés du développement du site web et les étudiants de SISR seront chargés 
+de l'hébergement. 
+ 
+Les paragraphes ci-après vous donnent les détails concernant la mise en œuvre de ce site.  
+Les exigences sont décrites avec différents « Niveaux ». L'objectif sera d'atteindre le niveau 
+maximum en répondant à des contraintes de plus en plus exigeantes. 
+2. Exigences concernant le site (option SLAM) 
+ 
+Niveau 1 : 
+Le site web devra être réalisé en HTML/CSS/JS. Vous devez utiliser le framework Boostrap 
+pour faciliter la construction graphique. Le site devra être fonctionnel sur écran large, 
+tablette et smartphone. 
+ 
+Le site devra contenir : 
+- Une page d'accueil contenant un texte d'accroche promouvant l'exposition, un 
+carrousel affichant 3 des 9 tableaux de l'exposition de votre choix (vous allez devoir 
+redimensionner ces images pour avoir un carrousel bien ajusté), et une citation du 
+commissaire de l'exposition, expliquant tout le plaisir, l'enjeu, et les liens avec les 
+films d'animation (soyez créatifs !) 
+- Une page « Les œuvres » affichant en écran large ou tablette, 3 œuvres par ligne sur 
+3 lignes, et une œuvre par ligne en format mobile. Chaque œuvre aura un lien 
+hypertexte pointant sur un site web donnant des informations sur celle-ci (Wikipedia 
+ou autre) 
+- Une page « A propos de Picasso » contenant une présentation succincte de l'artiste 
+avec une photo ou un auto-portrait, et cette vidéo intégrée à la page 
+- Une page « Informations pratiques » contant l'adresse de l'exposition, un plan 
+OpenStreetMap intégré pointant vers le musée du film d'animation (consulter ce lien 
+pour une explication sur comment réaliser cette intégration), les horaires 
+d'ouvertures (du mardi ou vendredi de 10h00 à 12h00 et de 14h00 à 18h30, et les 
+samedi et dimanche, de 10h00 à 19h00) 
+- Une page « Tarifs » contenant dans un tableau, les tarifs suivants : 
+ 
+ 
+ 
+
+ 
+Catégories Prix 
+Normal 32€ 
+Tarif réduit (enfants entre 12 et 18, séniors 
+de plus de 65 ans) 
+24€ 
+Tarif étudiant, demandeurs d'emploi 20€ 
+Tarif membre de l'association du festival 
+international d'animation d'Annecy 
+12€ 
+ 
+Tarif -12 ans 5€ 
+ 
+Niveau 2 : 
+Contraintes supplémentaires : 
+- Dans la page « Les œuvres », les tableaux devront s'afficher dans un ordre aléatoire. 
+Cet ordre aléatoire devra être géré avec un peu de code JavaScript. 
+Vous pouvez vous inspirer de ce lien pour obtenir une fonction aléatoire. Attention, cet 
+exemple ne permet d'afficher qu'une seule image aléatoire, vous en avez 9 !. Il vous faudra 
+exécuter 9 fois cette fonction get_random_image(), peut-être avec une boucle for ? 
+ 
+- Pour s'assurer du bon référencement du site web (SEO) et du respect de la RGPD, 
+vous devez ajouter tous les éléments nécessaires dans le code HTML, et ajouter une 
+page « Mentions légales » (cherchez le contenu de ce type de pages sur d'autres sites 
+web) 
+ 
+Niveau 3 : 
+Contraintes supplémentaires : 
+- Les catégories et prix des tarifs devront être stockés dans une base de données. 
+- L'affichage de la table des tarifs se fera avec PHP en allant récupérer les données dans 
+la base de données. 
+ 
+Niveau 4 : 
+Mettez en place un formulaire qui permettra de saisir le nombre de tickets pour chacune des 
+catégories, et qui calculera le tarif total.  
+
+3. Exigences concernant l'hébergement (option SISR) 
+ 
+Niveau 1 : 
+Dans un premier temps, vous devez mettre en place l'architecture réseau dans Amazon Web 
+Services, pour correctement installer les serveurs requis. 
+ 
+L'objectif va être d'héberger le site web sur un serveur web Linux (OS Debian 12) situé dans 
+un sous-réseau accessible depuis internet, et la base de données utilisée par le site web sur 
+un serveur Linux (OS Debian 12) situé dans un sous-réseau privé, non-accessible directement 
+depuis internet. 
+ 
+L'architecture finale ressemblera à cela : 
+ 
+ 
+Vous vous connecterez aux serveurs Linux via l'outil Putty (voir doc dans Teams). 
+ 
+Commencez par mettre à jour votre système avec la commande : sudo apt update suivi de la 
+commande sudo apt ugrade . 
+ 
+2 serveurs web sont actuellement très populaires et largement déployés dans le monde du 
+web : Apache et Nginx. 
+Installez l'un ou l'autre, ou choix. Pour faire votre choix, analysez les tutoriels d'installation 
+trouvés sur internet avant de vous lancer. 
+Note : les tutoriels d'installation d'Apache et de Nginx de DigitalOcean sont plutôt bien faits, 
+mais à vous de chercher celui qui vous conviendra le mieux et vous permettra de 
+comprendre ce que vous faites. 
+ 
+Copiez des fichiers d'un site web (par exemple, celui de l'éval Bootstrap) pour valider le 
+fonctionnement de votre serveur web. 
+ 
+Pour la base de données, vous installerez MariaDB sur l'autre serveur Linux. 
+ 
+ 
+ 
+BDD 
+
+Niveau 2 : 
+La sécurité est un aspect important du projet. Aussi vous devez sécuriser votre serveur. Par 
+défaut, aucun firewall n'est activé sur celui-ci. 
+Vous devez mettre en œuvre un pare-feu UFW pour protéger votre serveur. Encore ici, le 
+tutoriel de DigitalOcean peut être utilisé mais à vous aussi d'effectuer vos propres 
+recherches. 
+---- 
+Vous devez aussi passer le site web en HTTPS avec un certificat auto-signé. Vous pouvez 
+utiliser ce tutoriel pour vous y aider ou tout autre tutoriel ou documentation que vous 
+trouverez sur le web. 
+ 
+Quelle est la problématique d'un certificat auto-signé ? 
+ 
+Niveau 3 : 
+Afin de pourvoir exécuter le code PHP et gérer une base de données, vous devez maintenant 
+faire évoluer votre serveur et y installer PHP et MySQL. Il faudra aussi faire évoluer le 
+paramétrage d'Apache ou Nginx pour pouvoir exécuter le code PHP. 
+A vous de chercher les tutoriels adéquats. 
+ 
+Niveau 4 : 
+Vous chercherez comment enregistrer le serveur web dans un DNS pour pouvoir accéder à 
+votre site web via un nom de domaine, et mettrez en place un certificat LetsEncrypt pour 
+passer votre site web en HTTPS. 
+ 
+3306
