@@ -31,8 +31,8 @@ export function SiteHeader() {
           <Link href="/projet-bts" className="text-sm font-medium transition-colors hover:text-emerald-400">
             Projets École
           </Link>
-          <Link href="/veille-technologique" className="text-sm font-medium transition-colors hover:text-emerald-400">
-            Veille Technologique
+          <Link href="/projet-personnel" className="text-sm font-medium transition-colors hover:text-emerald-400">
+            Projets Personnels
           </Link>
           <Link href="/contact">
             <Button className="bg-emerald-600 hover:bg-emerald-700">Contact</Button>
@@ -62,11 +62,8 @@ export function SiteHeader() {
               <Link href="/projet-bts" className="text-sm font-medium transition-colors hover:text-emerald-400">
                 Projets École
               </Link>
-              <Link
-                href="/veille-technologique"
-                className="text-sm font-medium transition-colors hover:text-emerald-400"
-              >
-                Veille Technologique
+              <Link href="/projet-personnel" className="text-sm font-medium transition-colors hover:text-emerald-400">
+                Projets Personnels
               </Link>
               <Link href="/contact" className="w-full">
                 <Button className="bg-emerald-600 hover:bg-emerald-700 w-full">Contact</Button>

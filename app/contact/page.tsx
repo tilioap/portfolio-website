@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Mail, Phone, MapPin, Send, Loader2, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -14,6 +14,7 @@ import { useToast } from "@/hooks/use-toast"
 export default function Contact() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -43,10 +44,8 @@ export default function Contact() {
       console.log("Réponse API:", result)
 
       if (response.ok) {
-        // Réinitialiser le formulaire AVANT d'afficher le toast
-        e.currentTarget.reset()
+        formRef.current?.reset()
 
-        // Afficher le message de succès
         toast({
           title: "✅ Message envoyé !",
           description: "Votre message a été envoyé avec succès. Je vous répondrai dans les plus brefs délais.",
@@ -89,7 +88,7 @@ export default function Contact() {
               <CardTitle>Formulaire de contact</CardTitle>
               <CardDescription>Remplissez ce formulaire pour m'envoyer un message</CardDescription>
             </CardHeader>
-            <form onSubmit={handleSubmit}>
+            <form ref={formRef} onSubmit={handleSubmit}>
               <CardContent className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
