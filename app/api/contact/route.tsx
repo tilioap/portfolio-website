@@ -14,15 +14,20 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Tous les champs sont requis" }, { status: 400 })
     }
 
-    // Configuration du transporteur SMTP
-    const transporter = nodemailer.createTransporter({
-      host: process.env.SMTP_HOST,
+    // Configuration du transporteur SMTP pour OVH avec STARTTLS
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || "ssl0.ovh.net",
       port: Number.parseInt(process.env.SMTP_PORT || "587"),
-      secure: process.env.SMTP_SECURE === "true",
+      secure: false, // false pour STARTTLS sur port 587
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
       },
+      tls: {
+        rejectUnauthorized: false,
+        minVersion: "TLSv1.2"
+      },
+      requireTLS: true, // Force l'utilisation de TLS
     })
 
     // Configuration de l'email
