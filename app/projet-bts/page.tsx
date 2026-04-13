@@ -1,4 +1,4 @@
-import { Code, Database, Server, Network, Shield, Download, Cloud } from "lucide-react"
+import { Code, Database, Server, Network, Shield, Download, Cloud, GlassWater, Bot, Smartphone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -24,10 +24,11 @@ export default function ProjetBTS() {
         </div>
 
         <Tabs defaultValue="projet1" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 text-xs sm:text-sm">
-            <TabsTrigger value="projet1">Zabbix</TabsTrigger>
-            <TabsTrigger value="projet2">Réseau</TabsTrigger>
-            <TabsTrigger value="projet3">Picasso</TabsTrigger>
+          <TabsList className="flex flex-wrap justify-center w-full h-auto gap-1 p-1 text-xs sm:text-sm">
+            <TabsTrigger value="projet1" className="flex-1 min-w-[80px]">Zabbix</TabsTrigger>
+            <TabsTrigger value="projet2" className="flex-1 min-w-[80px]">Réseau</TabsTrigger>
+            <TabsTrigger value="projet3" className="flex-1 min-w-[80px]">Picasso</TabsTrigger>
+            <TabsTrigger value="projet4" className="flex-1 min-w-[80px]">WineMind</TabsTrigger>
           </TabsList>
 
           <TabsContent value="projet1" className="mt-6">
@@ -510,6 +511,152 @@ export default function ProjetBTS() {
                     <Download className="mr-2 h-4 w-4" /> Cahier des charges
                   </Button>
                 </a>
+              </CardFooter>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="projet4" className="mt-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>WineMind - Application IA pour le Vin</CardTitle>
+                <CardDescription>
+                  Projet d'une semaine : application mobile avec chatbot IA pour conseiller les amateurs de vin
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Presentation du projet</h3>
+                  <p className="text-sm text-muted-foreground">
+                    WineMind est une application mobile developpee en une semaine dans le cadre d'un projet intensif. 
+                    L'objectif etait de creer une application complete pour iPhone et Android permettant aux utilisateurs 
+                    de recevoir des conseils personnalises sur les vins grace a l'intelligence artificielle.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    L'application propose un chatbot IA specialise dans le domaine du vin, capable de recommander 
+                    le vin ideal en fonction du plat, de l'occasion ou meme de la meteo. Par exemple, si vous demandez 
+                    "Quel temps fait-il aujourd'hui ?", l'IA vous suggerera un vin adapte a la saison ou aux conditions 
+                    meteorologiques du moment. Cette approche originale permet de garder l'IA concentree sur son domaine 
+                    d'expertise : le vin.
+                  </p>
+                </div>
+
+                <div className="grid gap-6 md:grid-cols-3">
+                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
+                    <Smartphone className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Application Mobile</h3>
+                    <p className="text-sm text-muted-foreground">iPhone et Android</p>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
+                    <Bot className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Intelligence Artificielle</h3>
+                    <p className="text-sm text-muted-foreground">ChatGPT avec prompts specialises</p>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
+                    <Database className="h-8 w-8 text-emerald-600" />
+                    <h3 className="font-medium">Backend</h3>
+                    <p className="text-sm text-muted-foreground">Supabase (Auth + BDD)</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Fonctionnalites principales</h3>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="rounded-lg border p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Bot className="h-5 w-5 text-emerald-600" />
+                        <h4 className="font-medium">Chatbot IA Sommelier</h4>
+                      </div>
+                      <ul className="text-sm space-y-1 text-muted-foreground">
+                        <li>Conseils personnalises sur les accords mets-vins</li>
+                        <li>Recommandations basees sur vos preferences</li>
+                        <li>Suggestions adaptees a l'occasion ou la saison</li>
+                        <li>IA specialisee uniquement sur le domaine du vin</li>
+                      </ul>
+                    </div>
+                    <div className="rounded-lg border p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <GlassWater className="h-5 w-5 text-emerald-600" />
+                        <h4 className="font-medium">Gestion de Cave</h4>
+                      </div>
+                      <ul className="text-sm space-y-1 text-muted-foreground">
+                        <li>Ajout de vins dans sa cave virtuelle</li>
+                        <li>Suivi de son inventaire</li>
+                        <li>Organisation par type, region ou annee</li>
+                        <li>Historique des vins degustes</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Architecture technique</h3>
+                  <p className="text-sm text-muted-foreground">
+                    L'architecture de WineMind repose sur plusieurs composants :
+                  </p>
+                  <ul className="list-disc pl-5 text-sm space-y-1 text-muted-foreground">
+                    <li><strong>Application mobile :</strong> Developpee nativement pour iOS et Android par l'equipe de developpeurs</li>
+                    <li><strong>Authentification :</strong> Gestion des comptes utilisateurs via Supabase Auth</li>
+                    <li><strong>Base de donnees :</strong> Stockage des caves, preferences et historiques via Supabase Database</li>
+                    <li><strong>Intelligence Artificielle :</strong> Integration de l'API ChatGPT avec des prompts personnalises</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Configuration de l'IA</h3>
+                  <p className="text-sm text-muted-foreground">
+                    L'intelligence artificielle a ete configuree avec des prompts specifiques pour garantir 
+                    qu'elle reste focalisee sur le domaine du vin :
+                  </p>
+                  <div className="rounded-lg border p-4 bg-slate-800/50">
+                    <p className="text-sm text-muted-foreground italic">
+                      "Tu es un sommelier expert. Tu ne reponds qu'aux questions liees au vin, aux accords 
+                      mets-vins, aux regions viticoles et a la degustation. Si l'utilisateur pose une question 
+                      hors sujet, tu dois trouver une maniere creative de la relier au monde du vin."
+                    </p>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Cette approche permet de maintenir une experience utilisateur coherente et specialisee, 
+                    tout en gardant un aspect ludique. Par exemple, une question sur la meteo sera interpretee 
+                    comme une demande de vin adapte aux conditions climatiques.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Technologies utilisees</h3>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="rounded-lg border p-4">
+                      <h4 className="font-medium mb-2">Frontend (Application)</h4>
+                      <ul className="text-sm space-y-1 text-muted-foreground">
+                        <li>Developpement natif iOS (Swift)</li>
+                        <li>Developpement natif Android (Kotlin)</li>
+                        <li>Interface utilisateur moderne et intuitive</li>
+                      </ul>
+                    </div>
+                    <div className="rounded-lg border p-4">
+                      <h4 className="font-medium mb-2">Backend et Services</h4>
+                      <ul className="text-sm space-y-1 text-muted-foreground">
+                        <li>Supabase pour l'authentification</li>
+                        <li>Supabase PostgreSQL pour la base de donnees</li>
+                        <li>API OpenAI (ChatGPT) pour l'IA</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold">Mon role dans le projet</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Dans le cadre de ce projet d'une semaine, j'ai participe a la mise en place de l'infrastructure 
+                    backend avec Supabase, incluant la configuration de l'authentification et la structure de la 
+                    base de donnees. J'ai egalement contribue a la conception des prompts pour l'IA afin de 
+                    garantir des reponses pertinentes et specialisees dans le domaine viticole.
+                  </p>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <p className="text-sm text-muted-foreground italic">
+                  Documentation en cours de redaction
+                </p>
               </CardFooter>
             </Card>
           </TabsContent>
